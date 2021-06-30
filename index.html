@@ -10,7 +10,71 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
     <body>
+        <main>
+            <div class='content-container'>
+                <h1>Procrastinators Curse</h1>
+                <p>Get your work done before your deadline or die!</p>
+                <div class="value-wrap">
+                    <div class='value-container'>
+                        
+                        <div class="value-bar_bg">
+                            <div class="value-bar" id="stress-bar"></div>
+                        </div>
+                        <p>Stress Level</p>
+                    </div>
+                    <div class='value-container'>
+                        
+                        <div class="value-bar_bg">
+                            <div class="value-bar" id="confidence-bar"></div>
+                        </div>
+                        <p>Confidence Level</p>
+                    </div>
+                    <div class='value-container'>
+                        
+                        <div class="value-bar_bg">
+                            <div class="value-bar" id="poop-bar"></div>
+                        </div>
+                        <p>Poopometer</p>
+                    </div>
+                </div>
 
+            
+            </div>
+            <div class='graphics-container'>
+                <div class='button-wrap'>
+                    <button class="reset-btn" id="stress">Adderal</button>
+                    <button class="reset-btn" id="confidence">Flex in the mirror</button>
+                    <button class="reset-btn" id="poop">Take a poop</button>
+                </div>  
+                <div class='graphic-wrap'>
+                    <div class="graphic"></div>
+                </div>
+                <h3 class="username">Username</h3>
+
+            </div>
+        </main>
+        <div class='start-popup'>
+            <h6>Welcome to the</h6>
+            <h1>Procrastinator's<br>Curse</h1>
+            <p>Finish your work by the time it's due or face death.</p>
+            <form class="start-form">
+                <div class="get-username"><span>Your Name Is&nbsp;</span><input class="username-field" type="text" placeholder="Mr. Procrastinator"><span>.</span></div>
+                <input class="start-btn" type="submit" value="Play the game">
+                <p class="tiny-text" style="margin-top: 12px;">Or don't... I couldn't care less</p>
+            </form>
+            
+        </div>
+        <div class='lose-popup'>
+            <h1>You suck.<br>Be better!</h1>
+            <p>Luckily for you, your boss is willing to give you another chance</p>
+            <p class="tiny-text" style="margin-top: 12px;">Or give into your destiny and quit before you get fired</p>
+
+            <form class="start-form">
+                <button class="restart-btn">Try again</button>
+            </form>
+            
+        </div>
+            
         
         <script src="js/script.js" async defer></script>
     </body>
