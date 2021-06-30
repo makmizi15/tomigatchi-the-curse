@@ -193,7 +193,7 @@ function resetValue(e){
         user.stress = 0;
         $stressBar.css('width', user.stress + '%');
         stressLvl($stressBar, 150);
-        $('.graphic').css('background-image', 'url(/Users/makaiharris/Documents/GA/SEI/projects/tomigatchi/images/adderal.png)');
+        $('.graphic').css('background-image', 'url("https://i.imgur.com/va1Yd6P.png")');
     } else if (this.id == 'confidence'){
         clearInterval(confIntervalId);
         user.confidence = 100;

@@ -252,7 +252,7 @@ form input {
 .graphic {
     height: 75%;
     width: 75%;
-    background-image: url(/Users/makaiharris/Documents/GA/SEI/projects/tomigatchi/images/man-at-computer.png);
+    background-image: url("https://i.imgur.com/OVaSnu6.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
