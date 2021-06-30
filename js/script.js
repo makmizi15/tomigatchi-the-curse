@@ -49,6 +49,7 @@ let stressIntervalId = '';
 let poopIntervalId = '';
 let confIntervalId = '';
 let remIntervalId = '';
+let graphicIntervalId = '';
 
 
 // game start
@@ -74,10 +75,23 @@ function popupsBeGone(){
 // play game
 
 function play() {
+    $('.graphic').css('background-image', 'url("https://i.imgur.com/QRd5q2j.png")');
     remWorkLvl($remBar, 500);
     stressLvl($stressBar, 150);
     poopLvl($poopBar, 300);
     confidenceLvl($confBar, 200);
+    
+    //change image
+    graphicIntervalId = setInterval(function (){
+        if(user.stress >= 75  || user.confidence <= 25 || user.poopometer >= 75){
+            $('.graphic').css('background-image', 'url("https://i.imgur.com/0Ke03Vl.png")');
+        } else if (user.stress < 75 && user.stress >= 50  || user.confidence > 25 && user.confidence <= 50 || user.poopometer >= 75 && user.poopometer >= 50){
+            $('.graphic').css('background-image', 'url("https://i.imgur.com/p96OYvR.png")');
+        } else {
+            $('.graphic').css('background-image', 'url("https://i.imgur.com/QRd5q2j.png")');
+        }
+        
+    }, 1000);
     if(user.stress >= 100 || user.confidence <= 0 || user.poopometer >= 100){
         gameOver();
     }
@@ -179,6 +193,7 @@ function clearAllIntervals() {
     clearInterval(confIntervalId);
     clearInterval(poopIntervalId);
     clearInterval(remIntervalId);
+    clearInterval(graphicIntervalId);
 
 
 };
@@ -193,7 +208,6 @@ function resetValue(e){
         user.stress = 0;
         $stressBar.css('width', user.stress + '%');
         stressLvl($stressBar, 150);
-        $('.graphic').css('background-image', 'url("https://i.imgur.com/va1Yd6P.png")');
     } else if (this.id == 'confidence'){
         clearInterval(confIntervalId);
         user.confidence = 100;
