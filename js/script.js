@@ -14,15 +14,19 @@
 
 
 // global variables
+
 let workLeft = 100;
 let user = {
     name: '',
     stress: 0,
     confidence: 100,
     poopometer: 0,
+    remWork: 0,
 }
 
+
 // buttons
+
 const poop = $('.poop');
 const adderal = $('.stress');
 const flex = $('.flex');
@@ -32,39 +36,87 @@ const restartGame = $('.restart-btn');
 
 
 //value bars
+
 const $stressBar = $('#stress-bar');
 const $poopBar = $('#poop-bar');
 const $confBar = $('#confidence-bar');
+const $remBar = $('.rw-bar');
+
 
 // user levels function 
+
 let stressIntervalId = '';
 let poopIntervalId = '';
 let confIntervalId = '';
+let remIntervalId = '';
 
-// play game
-function play() {
-    stressLvl($stressBar, 100);
-    poopLvl($poopBar, 1000);
-    confidenceLvl($confBar, 400);
-    if(user.stress >= 100 || user.confidence <= 0 || user.poopometer >= 100){
-        gameOver();
-    }
-}
-
-// lose game
-function gameOver() {
-    $('.lose-popup').css('display', 'flex');
-}
 
 // game start
 
 function gameStart(e) {
     e.preventDefault();
-    $('.lose-popup').css('display', 'none');
-    $('.start-popup').css('display', 'none');
-    user.name = $('.get-username').val();
+    popupsBeGone();
+    user.name = $('.username-field').val();
     $('.username').text(user.name);
     play();
+}
+
+
+// hide all popups
+
+function popupsBeGone(){
+    $('.lose-popup').css('display', 'none');
+    $('.win-popup').css('display', 'none');
+    $('.start-popup').css('display', 'none');
+}
+
+
+// play game
+
+function play() {
+    remWorkLvl($remBar, 500);
+    stressLvl($stressBar, 150);
+    poopLvl($poopBar, 300);
+    confidenceLvl($confBar, 200);
+    if(user.stress >= 100 || user.confidence <= 0 || user.poopometer >= 100){
+        gameOver();
+    }
+}
+
+
+// reset values on game end
+
+function resetAllValues(){
+    for (const stats in user){
+        if (stats == 'name'){
+            console.log(`the users name is ${user[stats]}`);
+        } else if (stats == 'confidence'){
+            user[stats] = 100;
+            $confBar.css('width', user[stats] + '%');
+            console.log(user[stats]);
+        } else {
+            user[stats] = 0;
+            console.log(user[stats]);
+            $stressBar.css('width', user[stats] + '%');
+            $poopBar.css('width', user[stats] + '%');
+            $remBar.css('width', user[stats] + '%');
+        }
+    }  
+}
+
+// win game
+
+function winGame() {
+    $('.win-popup').css('display', 'flex');
+    resetAllValues();
+    
+}
+
+
+// lose game
+function gameOver() {
+    $('.lose-popup').css('display', 'flex');
+    resetAllValues();
 }
 
 
@@ -107,38 +159,55 @@ function confidenceLvl(bar, speed) {
     }, speed);
 };
 
+function remWorkLvl(bar, speed) {
+    remIntervalId = setInterval(function () {
+        user.remWork++;
+        bar.css('width', user.remWork + '%');
+        $('.rw-percent').text(user.remWork + '%')
+        if (user.remWork >= 100) {
+            clearAllIntervals();
+            winGame();
+        }
+    }, speed);
+};
+
+
 // stop value bar
 
 function clearAllIntervals() {
     clearInterval(stressIntervalId);
     clearInterval(confIntervalId);
     clearInterval(poopIntervalId);
+    clearInterval(remIntervalId);
 
 
 };
 
-// Reset Value
+
+// Reset Values on btn click
 
 function resetValue(e){
     e.preventDefault();
     if (this.id == 'stress'){
-        clearAllIntervals(stressIntervalId);
+        clearInterval(stressIntervalId);
         user.stress = 0;
         $stressBar.css('width', user.stress + '%');
-        stressLvl($stressBar, 100);
+        stressLvl($stressBar, 150);
+        $('.graphic').css('background-image', 'url(/Users/makaiharris/Documents/GA/SEI/projects/tomigatchi/images/adderal.png)');
     } else if (this.id == 'confidence'){
-        clearAllIntervals(confIntervalId);
+        clearInterval(confIntervalId);
         user.confidence = 100;
         $confBar.css('width', user.confidence + '%');
-        poopLvl($poopBar, 1000);
+        confidenceLvl($confBar, 200);
 
     } else {
-        clearAllIntervals(poopIntervalId);
+        clearInterval(poopIntervalId);
         user.poopometer = 0;
         $poopBar.css('width', user.poopometer + '%');
-        confidenceLvl($confBar, 400);
+        poopLvl($poopBar, 300);
     }
 }
+
 
 // interaction events 
 

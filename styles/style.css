@@ -3,8 +3,15 @@
     padding: 0;
 }
 
+:root {
+    --bg: #a3e7b6;
+    --main-color: #0bb38e;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg);
+    color: var(--main-color);
 }
 
 main {
@@ -14,11 +21,61 @@ main {
     max-width: 1400px;
     margin: 0 auto;
     height: 100vh;
-    border: 12px solid black;
+    position: relative;
+}
+
+.remaining-work-container {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.rw-text {
+    position: absolute;
+    color: var(--main-color);
+    text-shadow:
+   -1px -1px 0 var(--bg),  
+    1px -1px 0 var(--bg),
+    -1px 1px 0 var(--bg),
+     1px 1px 0 var(--bg);
+    text-align: center;
+    width: 100%;
+    font-size: large;
+    font-weight: bold;
+}
+
+.rw-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--main-color);
+    
+}
+
+.rw-bar_bg {
+    width: 90%;
+    height: 30px;
+    background-color: transparent;
+    border: 4px solid var(--main-color);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 h1 {
-    font-size: 69px;
+    font-size: 90px;
+    line-height: 1;
+    margin-bottom: 16px;
+    color: var(--main-color);
+}
+
+h2 {
+    font-size: 48px;
     line-height: 1;
     margin-bottom: 16px;
 }
@@ -42,8 +99,9 @@ h6 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: var(--bg);
     text-align: center;
+    color: var(--main-color);
     /* display: none; */
 }
 
@@ -59,12 +117,28 @@ h6 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(8px);
+    background-color: var(--bg);
+    display: none;
+}
+
+.win-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    height: 100%;
+    width:100%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
     display: none;
 }
 
 .start-form {
-    margin: 20px 0;
+    margin: 48px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,11 +146,12 @@ h6 {
 
 form input {
     margin-bottom: 16px;
+    outline: none;
 }
 
 .tiny-text {
     font-size: 12px;
-    color: rgb(168, 168, 168);
+    color: rgb(100, 100, 100);
 }
 
 .get-username{
@@ -86,35 +161,44 @@ form input {
 
 .username-field {
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--main-color);
     font-size: 32px;
     text-align: center;
+    background-color: var(--bg);
+    color: var(--main-color);
+}
+
+::placeholder {
+    color: #0bb38f65;
 }
 
 .start-btn {
-    width: 200px;
+    width: 12vw;
     padding: 20px 0px;
     border-radius: 999px;
-    margin: 0 8px;
     background-color: transparent;
-    border: 2px solid black;
-    color: black; 
+    border: 4px solid var(--main-color);
+    color: var(--bg);
+    background-color: var(--main-color);
     cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 24px;
 }
 
 .start-btn:hover{
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: var(--main-color);
 }
 
 /* Content side */
 .content-container {
-    background-color: aqua;
-    padding: 200px 32px;
-    width: auto;
+    padding: 144px 32px 144px 32px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
 }
 
 .value-wrap {
@@ -128,7 +212,7 @@ form input {
 .value-bar {
     width: 0%;
     height: 100%;
-    background-color: black;
+    background-color: var(--main-color);
     position: absolute;
     top: 0;
     left: 0;
@@ -137,9 +221,11 @@ form input {
 .value-bar_bg {
     width: 100%;
     height: 20px;
-    background-color: white;
+    border: 4px solid var(--main-color);
     margin-bottom: 8px;
     position: relative;
+    border-radius: 999px;
+    overflow: hidden;
 }
 
 #confidence-bar {
@@ -149,66 +235,87 @@ form input {
 
 /* Graphics side */
 .graphics-container {
-    background-color: white;
-    flex-grow: 3;
-    padding: 200px 32px;
+    width: 50%;
+    padding: 144px 32px 144px 32px;
 }
 
 .graphic-wrap {
-    background-color: cadetblue;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    margin: 20px 0px;
+    position: relative;
 }
 
 .graphic {
-    background-color: coral;
-    height: 50px;
-    width: 50px;
+    height: 75%;
+    width: 75%;
+    background-image: url(/Users/makaiharris/Documents/GA/SEI/projects/tomigatchi/images/man-at-computer.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .username {
     text-align: center;
+    position: absolute;
+    top: 0;
 }
 
 button {
-    width: 200px;
+    width: 12vw;
     padding: 20px 0px;
     border-radius: 999px;
-    margin: 0 8px;
     background-color: transparent;
-    border: 2px solid black;
-    color: black;
+    border: 4px solid var(--main-color);
+    color: var(--bg);
+    background-color: var(--main-color);
     cursor: pointer;
+    font-weight: bold;
+    font-size: large;
 
 }
 
 button:hover{
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: var(--main-color);
 }
 
 .button-wrap {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
+    margin: 16px 0px;
 }
 
 /* media queries */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
     main {
         flex-direction: column;
     }
     .content-container {
         padding: 64px 16px;
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
+
     }
     .graphics-container {
         padding: 64px 16px;
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
     }
     h1 {
-        font-size: 24px;
+        font-size: 6vw;
+    }
+    button {
+        width: 24vw;
+    
+    }
+    .username {
+        top: 0;
     }
 }

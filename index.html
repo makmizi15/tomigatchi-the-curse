@@ -12,8 +12,10 @@
     <body>
         <main>
             <div class='content-container'>
-                <h1>Procrastinators Curse</h1>
-                <p>Get your work done before your deadline or die!</p>
+                <div><h2>Procrastination<br>Simulation</h2>
+                    <p style="line-height: 1.5;">Instructions:</p>
+                    <p style="margin-bottom: 16px; line-height: 1.5;">1. Take Adderal to reduce your stress.<br>2. Flex in the mirror to increase your confidence.<br>3. And go poop to reduce your poopometer</p>
+                </div>
                 <div class="value-wrap">
                     <div class='value-container'>
                         
@@ -37,30 +39,35 @@
                         <p>Poopometer</p>
                     </div>
                 </div>
-
-            
-            </div>
-            <div class='graphics-container'>
                 <div class='button-wrap'>
                     <button class="reset-btn" id="stress">Adderal</button>
                     <button class="reset-btn" id="confidence">Flex in the mirror</button>
                     <button class="reset-btn" id="poop">Take a poop</button>
                 </div>  
+
+            
+            </div>
+            <div class='graphics-container'>
                 <div class='graphic-wrap'>
+                    <h3 class="username">Username</h3>
                     <div class="graphic"></div>
                 </div>
-                <h3 class="username">Username</h3>
 
+            </div>
+            <div class="remaining-work-container">
+                <div class="rw-bar_bg">
+                    <p class="rw-text">Completed Work—<span class="rw-percent">0%</span></p>
+                    <div class="rw-bar"></div>
+                </div>
             </div>
         </main>
         <div class='start-popup'>
-            <h6>Welcome to the</h6>
-            <h1>Procrastinator's<br>Curse</h1>
-            <p>Finish your work by the time it's due or face death.</p>
+            <h1>Procrastination<br>Simulation</h1>
+            <p>Complete your work by the deadline or face death.<br>Enter your name to get started.</p>
             <form class="start-form">
                 <div class="get-username"><span>Your Name Is&nbsp;</span><input class="username-field" type="text" placeholder="Mr. Procrastinator"><span>.</span></div>
                 <input class="start-btn" type="submit" value="Play the game">
-                <p class="tiny-text" style="margin-top: 12px;">Or don't... I couldn't care less</p>
+                <p class="tiny-text" style="margin-top: 12px;">Or don't... see if I care.</p>
             </form>
             
         </div>
@@ -71,6 +78,16 @@
 
             <form class="start-form">
                 <button class="restart-btn">Try again</button>
+            </form>
+            
+        </div>
+        <div class='win-popup'>
+            <h1>Congrats...<br>you did your job.</h1>
+            <p>Now here's your next assignment</p>
+            <p class="tiny-text" style="margin-top: 12px;">Or give into your destiny and quit before you get fired</p>
+
+            <form class="start-form">
+                <button class="restart-btn">Play again</button>
             </form>
             
         </div>
